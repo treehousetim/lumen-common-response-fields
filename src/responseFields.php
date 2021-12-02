@@ -1,5 +1,6 @@
 <?php namespace treehousetim\responseFields;
 
+use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 
 trait responseFields
