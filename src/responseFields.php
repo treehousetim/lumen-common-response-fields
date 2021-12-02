@@ -15,10 +15,15 @@ trait responseFields
         ];
     }
     //------------------------------------------------------------------------
+    protected function simpleSuccess( string $message = 'Success', int $code = 200 ) : JsonResponse
+    {
+        return new JsonResponse( $this->crf_getCommonFields( $message, null, $code ), $code );
+    }
+    //------------------------------------------------------------------------
     protected function successResponse( \Illuminate\Database\Eloquent\Model $obj, string $message = 'Success', int $code = 200 ) : JsonResponse
     {
         $data = $this->crf_getCommonFields( $message, null, $code ) + $obj->toArray();
-        return $response = new JsonResponse( $data, $code );
+        return new JsonResponse( $data, $code );
     }
     //------------------------------------------------------------------------
     protected function successList( \Illuminate\Database\Eloquent\Collection $obj, $namespace = 'record', string $message = 'Success', int $code = 200 ) : JsonResponse
@@ -29,24 +34,24 @@ trait responseFields
         {
             $data[$namespace][] = $item;
         }
-        return $response = new JsonResponse( $data, $code );
+        return new JsonResponse( $data, $code );
     }
     //------------------------------------------------------------------------
     protected function failResponse( \Illuminate\Database\Eloquent\Model $obj, string $message = 'failed', int $code = 500 ) : JsonResponse
     {
         $data = $this->crf_getCommonFields( null, $message, $code ) + $obj->toArray();
-        return $response = new JsonResponse( $data );
+        return new JsonResponse( $data );
     }
     //------------------------------------------------------------------------
     protected function hardFailResponse( string $message = 'failed', int $code = 500 )
     {
         $data = $this->crf_getCommonFields( null, $message, $code );
-        return $response = new JsonResponse( $data, $code );
+        return new JsonResponse( $data, $code );
     }
     //------------------------------------------------------------------------
     protected function notFoundResponse( string $message = 'not found', $code = 404 )
     {
         $data = $this->crf_getCommonFields( null, $message, $code );
-        return $response = new JsonResponse( $data );
+        return new JsonResponse( $data );
     }
 }
