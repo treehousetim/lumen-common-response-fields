@@ -1,0 +1,21 @@
+{
+    "name": "treehousetim/lumen-common-response-fields",
+    "description": "A trait you can include in lumen controllers to provide standard fields",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim Gallagher",
+            "email": "treehousetim@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.1 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "treehousetim\\lumen-common-response-fields\\": "src/"
+        }
+    }
+}
