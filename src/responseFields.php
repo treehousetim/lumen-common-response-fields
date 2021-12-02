@@ -1,5 +1,7 @@
 <?php namespace treehousetim\responseFields;
 
+use Carbon\Carbon;
+
 trait responseFields
 {
     protected function crf_getCommonFields( $message, $errorMessage, int $code )
