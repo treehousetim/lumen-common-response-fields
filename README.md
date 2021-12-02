@@ -13,7 +13,7 @@ Provides a trait to use in controllers in a lumen project to provide common outp
 
 ```
 {
-	"success_msg": "Success",
+    "success_msg": "Success",
     "error_msg": null,
     "httpCode": 200,
     "request_utc": "2021-12-02 17:27:32"
