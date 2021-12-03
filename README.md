@@ -2,8 +2,6 @@
 Provides a trait to use in controllers in a lumen project to provide common output fields
 
 ## fields added to response output
-  * `success_msg`
-  * `error_msg`
   * `httpCode`
   * `request_utc`
 
@@ -13,8 +11,6 @@ Provides a trait to use in controllers in a lumen project to provide common outp
 
 ```
 {
-    "success_msg": "Success",
-    "error_msg": null,
     "httpCode": 200,
     "request_utc": "2021-12-02 17:27:32"
 }
@@ -24,8 +20,6 @@ Provides a trait to use in controllers in a lumen project to provide common outp
 
 ```
 {
-    "success_msg": null,
-    "error_msg": "Only one address per user",
     "httpCode": 422,
     "request_utc": "2021-12-02 17:48:37"
 }
