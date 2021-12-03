@@ -41,9 +41,13 @@ class jsonResponseMiddleware
             return $this->validationErrors( $e->errors() );
         }
 
-        if( is_string( $response ) || is_array( $response ) )
+        if( is_string( $response ) )
         {
             return new JsonResponse( $this->getResponseStruct( 200 ) + ['data' => $response ] );
+        }
+        elseif( is_array( $response ) )
+        {
+            return new JsonResponse( $this->getResponseStruct( 200 ) + $response );
         }
 
         $original = $response->original;
@@ -51,7 +55,11 @@ class jsonResponseMiddleware
         {
             $class = 'Illuminate\Database\Eloquent\Model';
         }
-        elseif( is_scalar( $original ) || is_array( $original ) )
+        elseif( is_array( $original ) )
+        {
+            $class= 'array';
+        }
+        elseif( is_scalar( $original ) )
         {
             $class = 'basic';
         }
@@ -64,6 +72,10 @@ class jsonResponseMiddleware
 
         switch ( $class )
         {
+        case 'array':
+            $out = $out + $original;
+            break;
+
         case 'basic':
             $out['data'] = $original;
             break;
@@ -81,7 +93,7 @@ class jsonResponseMiddleware
             break;
 
         default:
-            $out['message'] = 'unknown output type';
+            throw new \Exception( 'Unknown response type' . PHP_EOL . print_r( $original, true ) );
         }
 
         return new JsonResponse( $out, $out['httpCode'] );
