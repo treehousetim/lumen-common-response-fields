@@ -52,6 +52,12 @@ trait responseFields
     protected function notFoundResponse( string $message = 'not found', $code = 404 )
     {
         $data = $this->crf_getCommonFields( null, $message, $code );
-        return new JsonResponse( $data );
+        return new JsonResponse( $data, $code );
+    }
+    //------------------------------------------------------------------------
+    protected function validationErrors( array $errors, $message = 'failed validation', $code = 422 )
+    {
+        $data = $this->crf_getCommonFields( null, $message, $code ) + ['errors' => $errors];
+        return new JsonResponse( $data, $code);
     }
 }

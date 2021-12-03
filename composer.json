@@ -1,6 +1,6 @@
 {
     "name": "treehousetim/lumen-common-response-fields",
-    "description": "A trait you can include in lumen controllers to provide standard fields",
+    "description": "after middleware for lumen for common response format",
     "type": "library",
     "license": "MIT",
     "authors": [
