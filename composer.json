@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "treehousetim\\lumen_midleware\\": "src/"
+            "treehousetim\\lumen_middleware\\": "src/"
         }
     }
 }
