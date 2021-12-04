@@ -1,10 +1,10 @@
-<?php namespace treehousetim\responseFields;
+<?php namespace treehousetim\lumen_middleware;
 
 use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 use Closure;
 
-class jsonResponseMiddleware
+class jsonStandardResponse
 {
     protected function getResponseStruct( int $statusCode ) : array
     {

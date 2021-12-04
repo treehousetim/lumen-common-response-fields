@@ -1,6 +1,6 @@
 {
-    "name": "treehousetim/lumen-common-response-fields",
-    "description": "after middleware for lumen for common response format",
+    "name": "treehousetim/lumen-middleware",
+    "description": "Various middleware for lumen",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "treehousetim\\responseFields\\": "src/"
+            "treehousetim\\lumen_midleware\\": "src/"
         }
     }
 }

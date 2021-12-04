@@ -1,32 +1,40 @@
-# lumen-common-response-fields
-Provides a trait to use in controllers in a lumen project to provide common output fields
+# lumen-middleware
 
-## fields added to response output
-  * `success_msg`
-  * `error_msg`
-  * `httpCode`
-  * `request_utc`
 
-# Example:
+## jsonStandardResponse
 
-## Success 
+Provides a standard way of providing JSON formatted output no matter what the application sends
 
+**For all endpoints**
+
+Modify your `app.php`
+
+```php
+$app->middleware([
+    treehousetim\lumen_middleware\jsonStandardResponse::class
+]);
 ```
+
+## idUUID
+
+Automatically validates uuid's in url parameters based on routes with the first parameter intended to be a UUID
+Only validates it is present and is a proper UUID.
+
+**Use in a controller's `__construct` method**
+
+```php
+class MyController extends Controller
 {
-    "success_msg": "Success",
-    "error_msg": null,
-    "httpCode": 200,
-    "request_utc": "2021-12-02 17:27:32"
-}
-```
-
-## Fail
-
-```
-{
-    "success_msg": null,
-    "error_msg": "Only one address per user",
-    "httpCode": 422,
-    "request_utc": "2021-12-02 17:48:37"
+ public function __construct()
+    {
+        $this->middleware( 'ID_UUID',
+            ['only'=>[
+                'get',
+                'update',
+                'destroy'
+            ]]
+        );
+    }
+...
 }
 ```
