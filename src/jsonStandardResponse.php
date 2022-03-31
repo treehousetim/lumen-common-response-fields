@@ -55,6 +55,14 @@ class jsonStandardResponse
         {
             $class = 'Illuminate\Database\Eloquent\Model';
         }
+        elseif( $original instanceOf \Illuminate\Http\Resources\Json\JsonResource )
+        {
+            $class = 'Illuminate\Http\Resources\Json\JsonResource';
+        }
+        elseif( $original instanceOf \JsonSerializable )
+        {
+            $class = 'JsonSerializable';
+        }
         elseif( is_array( $original ) )
         {
             $class= 'array';
@@ -90,6 +98,14 @@ class jsonStandardResponse
             {
                 $out['items'][] = $item;
             }
+            break;
+
+        case 'Illuminate\Http\Resources\Json\JsonResource';
+            $out = $out + $original->toArray( $request );
+            break;
+
+        case 'JsonSerializable':
+            $out = $out + (array)$original->jsonSerialize();
             break;
 
         default:
