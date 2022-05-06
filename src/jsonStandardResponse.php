@@ -19,6 +19,14 @@ class jsonStandardResponse
         $out = $this->getResponseStruct( 422 );
         $out['errors'] = $errors;
 
+        $firstError = array_shift( $errors );
+        if( is_array( $firstError ) )
+        {
+            $firstError = array_shift( $firstError );
+        }
+
+        $out['error'] = $firstError;
+
         return new JsonResponse( $out, $out['httpCode'] );
     }
     //------------------------------------------------------------------------
